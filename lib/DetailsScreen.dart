@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:charts_flutter/flutter.dart';
+import 'dart:math';
+import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,14 +17,18 @@ class DetailsScreen extends StatefulWidget {
   _DetailsState createState() => new _DetailsState();
 }
 
+class ClicksPerYear {
+  final String year;
+  final int clicks;
+  final charts.Color color;
+
+  ClicksPerYear(this.year, this.clicks, Color color)
+      : this.color = new charts.Color(
+            r: color.red, g: color.green, b: color.blue, a: color.alpha);
+}
+
 class _DetailsState extends State<DetailsScreen> {
   final databaseReference = Firestore.instance;
-
-final data = [
-  new OrdinalSales('2016', 12),
-  new OrdinalSales('2017', 15),
-
-];
 
   Future productData;
 
@@ -35,6 +40,38 @@ final data = [
 
   @override
   Widget build(BuildContext context) {
+
+    var data = [
+      new ClicksPerYear('Fat', (new Random()).nextInt(10) + 1, Colors.purple[200]),
+      new ClicksPerYear('Carbohydrate', (new Random()).nextInt(10) + 1, Colors.purple[200]),
+      new ClicksPerYear('Protein', (new Random()).nextInt(10) + 1, Colors.purple[200]),
+    ];
+
+    var series = [
+      new charts.Series(
+        domainFn: (ClicksPerYear clickData, _) => clickData.year,
+        measureFn: (ClicksPerYear clickData, _) => clickData.clicks,
+        colorFn: (ClicksPerYear clickData, _) => clickData.color,
+        id: 'Clicks',
+        data: data,
+      ),
+    ];
+
+    var chart = new charts.BarChart(
+      series,
+      animate: true,
+      vertical: false,
+    );
+
+    var chartWidget = new Padding(
+      padding: new EdgeInsets.all(32.0),
+      child: new SizedBox(
+        width: 300.0,
+        height: 100.0,
+        child: chart,
+      ),
+    );
+
     return Scaffold(
         appBar: new AppBar(
           title: new Text('Hiriff'),
@@ -64,13 +101,14 @@ final data = [
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                                 width: 300,
-                                height: 800,
+                                height: 400,
                                 child: Column( 
                                   children: [
                                     Text(snapshot.data['name'],  
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
-                                    HorizontalBarChart.withSampleData(),
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)
+                                    ),
+                                    chartWidget
                                   ],
                                 )
                               ),

@@ -14,6 +14,7 @@ class HorizontalBarChart extends StatelessWidget {
       _createSampleData(),
       // Disable animations for image tests.
       animate: false,
+      
     );
   }
 
@@ -25,6 +26,7 @@ class HorizontalBarChart extends StatelessWidget {
       seriesList,
       animate: animate,
       vertical: false,
+      
     );
   }
 
@@ -55,3 +57,4 @@ class OrdinalSales {
 
   OrdinalSales(this.year, this.sales);
 }
+
