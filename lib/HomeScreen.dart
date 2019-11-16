@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.purple[200],
           centerTitle: true,
           title: Text('Hiriff'),
         ),
@@ -37,6 +37,27 @@ class HomeScreen extends StatelessWidget {
                 ],
               )
           ),
-        );
+          bottomNavigationBar:BottomNavigationBar(
+            type: BottomNavigationBarType.shifting ,
+            items: [
+            BottomNavigationBarItem(
+            icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+            title: new Text('')
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+            title: new Text('')
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+            title: new Text('')
+            ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.access_alarm,color: Color.fromARGB(255, 0, 0, 0)),
+            title: new Text('')
+            )
+            ],
+        )
+    );
   }
 }

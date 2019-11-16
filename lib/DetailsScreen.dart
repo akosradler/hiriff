@@ -61,21 +61,20 @@ class _DetailsState extends State<DetailsScreen> {
       series,
       animate: true,
       vertical: false,
+      primaryMeasureAxis:
+          new charts.NumericAxisSpec(renderSpec: new charts.NoneRenderSpec()),
     );
 
-    var chartWidget = new Padding(
-      padding: new EdgeInsets.all(32.0),
-      child: new SizedBox(
-        width: 300.0,
-        height: 100.0,
-        child: chart,
-      ),
+    var chartWidget = new SizedBox(
+      width: 300.0,
+      height: 100.0,
+      child: chart,
     );
 
     return Scaffold(
         appBar: new AppBar(
           title: new Text('Hiriff'),
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.purple[200],
           centerTitle: true,
         ),
         body: new Center(
@@ -93,27 +92,41 @@ class _DetailsState extends State<DetailsScreen> {
                       return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                           child: Card(
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {
-                                print('Card tapped.');
-                              },
+                            
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                                 width: 300,
-                                height: 400,
+                                height: 600,
                                 child: Column( 
                                   children: [
                                     Text(snapshot.data['name'],  
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)
                                     ),
-                                    chartWidget
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 20.0),
+                                      child: Image.asset(
+                                      'assets/images/1.png',
+                                    ),
+                                    ),
+                                    chartWidget,
+                                    Text('Ingredients', textAlign: TextAlign.center,
+                                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
+                                    // Text(snapshot.data['ingredients'].toString())
+                                    Expanded( 
+                                      child: ListView(shrinkWrap: true, children: snapshot.data['ingredients'].map<Widget>((word)=> 
+                                      Card(child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Text(word),
+                                      ))).toList()
+                                      )
+                                      )
                                   ],
                                 )
-                              ),
+                              
                             ),
                           ),
+                          
                         );
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
@@ -124,9 +137,34 @@ class _DetailsState extends State<DetailsScreen> {
                   },
                 ),
                ),
+ 
             ],
           ),
-        ));
+        ),
+        bottomNavigationBar:BottomNavigationBar(
+type: BottomNavigationBarType.shifting ,
+items: [
+BottomNavigationBarItem(
+icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+title: new Text('')
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+title: new Text('')
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+title: new Text('')
+),
+BottomNavigationBarItem(
+icon: Icon(Icons.access_alarm,color: Color.fromARGB(255, 0, 0, 0)),
+title: new Text('')
+)
+],
+
+        )
+        
+        );
   }
 
   Future getData(String id) async {

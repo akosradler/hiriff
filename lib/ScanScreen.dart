@@ -23,22 +23,28 @@ class _ScanState extends State<ScanScreen> {
     return Scaffold(
         appBar: new AppBar(
           title: new Text('Hiriff'),
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.purple[200],
           centerTitle: true,
         ),
         body: new Center(
           child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                child: Image.asset(
+                'assets/images/logo.png',
+              ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: RaisedButton(
-                    color: Colors.orange,
+                    color: Colors.purple[300],
                     textColor: Colors.white,
                     splashColor: Colors.deepOrange,
                     onPressed: scan,
-                    child: const Text('START CAMERA SCAN')
+                    child: const Text('SCAN BARCODE')
                 ),
               )
               ,
@@ -49,7 +55,31 @@ class _ScanState extends State<ScanScreen> {
               ,
             ],
           ),
-        ));
+        ),
+        bottomNavigationBar:BottomNavigationBar(
+        type: BottomNavigationBarType.shifting ,
+        items: [
+        BottomNavigationBarItem(
+        icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.access_alarm,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        )
+        ],
+
+
+        )
+    );
   }
 
   Future scan() async {
