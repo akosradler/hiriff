@@ -23,6 +23,8 @@ class _ScanState extends State<ScanScreen> {
     return Scaffold(
         appBar: new AppBar(
           title: new Text('Hiriff'),
+          backgroundColor: Colors.orange,
+          centerTitle: true,
         ),
         body: new Center(
           child: new Column(

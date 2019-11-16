@@ -13,12 +13,4 @@ class MyApp extends StatelessWidget {
     return HomeScreen();
   }
 
-  void getData() {
-    databaseReference
-        .collection("products")
-        .getDocuments()
-        .then((QuerySnapshot snapshot) {
-      snapshot.documents.forEach((f) => print('${f.data}}'));
-    });
-  }
 }
