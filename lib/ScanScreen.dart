@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import './DetailsScreen.dart';
 
 class ScanScreen extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _ScanState extends State<ScanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
-          title: new Text('QR Code Scanner'),
+          title: new Text('Hiriff'),
         ),
         body: new Center(
           child: new Column(
@@ -31,9 +32,9 @@ class _ScanState extends State<ScanScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: RaisedButton(
-                    color: Colors.blue,
+                    color: Colors.orange,
                     textColor: Colors.white,
-                    splashColor: Colors.blueGrey,
+                    splashColor: Colors.deepOrange,
                     onPressed: scan,
                     child: const Text('START CAMERA SCAN')
                 ),
@@ -41,7 +42,7 @@ class _ScanState extends State<ScanScreen> {
               ,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Text(barcode, textAlign: TextAlign.center,),
+                child: Text(barcode, textAlign: TextAlign.center),
               )
               ,
             ],
@@ -52,7 +53,10 @@ class _ScanState extends State<ScanScreen> {
   Future scan() async {
     try {
       String barcode = await BarcodeScanner.scan();
-      setState(() => this.barcode = barcode);
+      setState(() => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => DetailsScreen(barcode: barcode)),
+                            ));
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {

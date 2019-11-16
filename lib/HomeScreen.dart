@@ -8,8 +8,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.orange,
           centerTitle: true,
-          title: Text('QR Code Scanner & Generator'),
+          title: Text('Hiriff'),
         ),
         body: Center(
             child:
@@ -20,16 +21,16 @@ class HomeScreen extends StatelessWidget {
                   Padding(
                       padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                       child: RaisedButton(
-                          color: Colors.blue,
+                          color: Colors.orange,
                           textColor: Colors.white,
-                          splashColor: Colors.blueGrey,
+                          splashColor: Colors.deepOrange,
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => ScanScreen()),
                             );
                           },
-                          child: const Text('SCAN QR CODE')
+                          child: const Text('SCAN BARCODE')
                       ),
                     ),
                    
