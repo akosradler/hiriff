@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "332895532686",
+    "firebase_url": "https://hiriff-c9b52.firebaseio.com",
+    "project_id": "hiriff-c9b52",
+    "storage_bucket": "hiriff-c9b52.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332895532686:android:e0affa0cb361b921ff3bdf",
+        "android_client_info": {
+          "package_name": "com.example.hiriff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332895532686-9psgfn9j2k4c7cls8kq3mp3ajc0hsql6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIScnW0ptgmHt_MJW6Y43ZyJi9Qo7o67Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332895532686-9psgfn9j2k4c7cls8kq3mp3ajc0hsql6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
