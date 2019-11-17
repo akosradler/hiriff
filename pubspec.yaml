@@ -48,6 +48,10 @@ flutter:
   assets:
     - assets/images/1.png
     - assets/images/logo.png
+    - assets/images/2.jpg
+    - assets/images/badges/finn.png
+    - assets/images/badges/euro.png
+    - assets/images/badges/co2.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg

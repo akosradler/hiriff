@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
             title: new Text('')
             ),
             BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
+            icon: Icon(Icons.accessibility_new,color: Color.fromARGB(255, 0, 0, 0)),
             title: new Text('')
             ),
             BottomNavigationBarItem(

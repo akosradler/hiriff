@@ -6,7 +6,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
+import 'package:nice_button/nice_button.dart';
 import './HoizontalChart.dart';
+import './ComparisonScreen.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 
 class DetailsScreen extends StatefulWidget {
   final String barcode;
@@ -29,6 +32,7 @@ class ClicksPerYear {
 
 class _DetailsState extends State<DetailsScreen> {
   final databaseReference = Firestore.instance;
+  String oldBarcode;
 
   Future productData;
 
@@ -36,6 +40,7 @@ class _DetailsState extends State<DetailsScreen> {
   initState() {
     super.initState();
     productData = getData(widget.barcode);
+    oldBarcode = widget.barcode;
   }
 
   @override
@@ -114,12 +119,13 @@ class _DetailsState extends State<DetailsScreen> {
                                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25)),
                                     // Text(snapshot.data['ingredients'].toString())
                                     Expanded( 
-                                      child: ListView(shrinkWrap: true, children: snapshot.data['ingredients'].map<Widget>((word)=> 
+                                      child:  ListView(shrinkWrap: true, children: snapshot.data['ingredients'].map<Widget>((word)=> 
                                       Card(child: Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Text(word),
                                       ))).toList()
                                       )
+                                      
                                       )
                                   ],
                                 )
@@ -137,30 +143,40 @@ class _DetailsState extends State<DetailsScreen> {
                   },
                 ),
                ),
- 
+              RaisedButton(
+                padding: EdgeInsets.symmetric(horizontal: 50.0),
+                color: Colors.purple[300],
+                textColor: Colors.white,
+                splashColor: Colors.deepOrange,
+                onPressed: scan,
+                child: const Text('SCAN ANOTHER PRODUCT')
+        ),
             ],
           ),
         ),
-        bottomNavigationBar:BottomNavigationBar(
-type: BottomNavigationBarType.shifting ,
-items: [
-BottomNavigationBarItem(
-icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
-title: new Text('')
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
-title: new Text('')
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
-title: new Text('')
-),
-BottomNavigationBarItem(
-icon: Icon(Icons.access_alarm,color: Color.fromARGB(255, 0, 0, 0)),
-title: new Text('')
-)
-],
+
+ bottomNavigationBar:BottomNavigationBar(
+        type: BottomNavigationBarType.fixed ,
+        fixedColor: Colors.purple[100],
+        backgroundColor: Colors.purple[100],
+        items: [
+        BottomNavigationBarItem(
+        icon: Icon(Icons.accessibility_new,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.add_a_photo,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.adjust,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.help,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        )
+        ],
 
         )
         
@@ -176,13 +192,12 @@ title: new Text('')
         .then((data) => data);
   }
 
-  // Future getData() {
-  //  return databaseReference
-  //       .collection("products")
-  //       .getDocuments()
-  //       .then((snapshot) => {
-  //         snapshot.documents.map((document) => document.data)
-  //       });
-
-  // }
+  Future scan() async {
+      String newBarcode = await BarcodeScanner.scan();
+      setState(() => Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ComparisonScreen(barcode: oldBarcode, newBarcode: newBarcode)),
+                            ));
+     
+  }
 }
