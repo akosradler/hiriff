@@ -4,6 +4,7 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './DetailsScreen.dart';
+import './PieChart.dart';
 
 class ScanScreen extends StatefulWidget {
   @override
@@ -31,11 +32,27 @@ class _ScanState extends State<ScanScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 10),child: Text('')),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
                 child: Image.asset(
                 'assets/images/logo.png',
+                height: 150,
               ),
+              ),
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Text('Track your nutritional intake', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24))
+                ),
+              ),
+              Container(
+                width: 200,
+                height: 200,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: DonutAutoLabelChart.withSampleData()
+                ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -44,14 +61,10 @@ class _ScanState extends State<ScanScreen> {
                     textColor: Colors.white,
                     splashColor: Colors.deepOrange,
                     onPressed: scan,
-                    child: const Text('SCAN BARCODE')
+                    child: const Text('SCAN  PRODUCT')
                 ),
               )
-              ,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Text(barcode, textAlign: TextAlign.center),
-              )
+              
               ,
             ],
           ),

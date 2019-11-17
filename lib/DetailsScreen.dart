@@ -122,7 +122,7 @@ class _DetailsState extends State<DetailsScreen> {
                                     // Text(snapshot.data['ingredients'].toString())
                                     Expanded( 
                                       child:  ListView(shrinkWrap: true, children: snapshot.data['ingredients'].map<Widget>((word)=> 
-                                      Card(child: Padding(
+                                      Card(color: Colors.grey[100], child: Padding(
                                         padding: const EdgeInsets.all(10.0),
                                         child: Text(word),
                                       ))).toList()
