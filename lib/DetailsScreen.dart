@@ -94,6 +94,8 @@ class _DetailsState extends State<DetailsScreen> {
                   future: productData,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
+                      var price = snapshot.data['price'];
+                      var imageId = snapshot.data['imageId'];
                       return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                           child: Card(
@@ -102,7 +104,7 @@ class _DetailsState extends State<DetailsScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                                 width: 300,
                                 height: 600,
-                                child: Column( 
+                                child: Stack(children: <Widget>[ Column( 
                                   children: [
                                     Text(snapshot.data['name'],  
                                       textAlign: TextAlign.center,
@@ -111,7 +113,7 @@ class _DetailsState extends State<DetailsScreen> {
                                     Padding(
                                       padding: EdgeInsets.only(top: 20.0),
                                       child: Image.asset(
-                                      'assets/images/1.png',
+                                      'assets/images/$imageId.png',
                                     ),
                                     ),
                                     chartWidget,
@@ -128,6 +130,13 @@ class _DetailsState extends State<DetailsScreen> {
                                       
                                       )
                                   ],
+                                ),
+                                Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: Text('$price €', style: TextStyle(fontSize: 16, color: Colors.grey),),
+                                )
+                                ]
                                 )
                               
                             ),

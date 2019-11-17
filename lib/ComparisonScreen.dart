@@ -93,6 +93,8 @@ class _ComparisonState extends State<ComparisonScreen> {
                   future: productDataFirst,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
+                      var price = snapshot.data['price'];
+                      var imageId = snapshot.data['imageId'];
                       return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: Card(
@@ -100,8 +102,8 @@ class _ComparisonState extends State<ComparisonScreen> {
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                                 width: 300,
-                                height: 300,
-                                child: Column( 
+                                height: 350,
+                                child: Stack(children: <Widget>[ Column( 
                                   children: [
                                     Text(snapshot.data['name'],  
                                       textAlign: TextAlign.center,
@@ -110,32 +112,57 @@ class _ComparisonState extends State<ComparisonScreen> {
                                     Padding(
                                       padding: EdgeInsets.only(top: 20.0),
                                       child: Image.asset(
-                                      'assets/images/1.png',
+                                      'assets/images/$imageId.png',
                                       height: 50.0,
                                       width: 50.0,
                                     ),
                                     ),
                                     chartWidget,
-                                    Row(children: <Widget>[
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 20.0),
+                                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+                                      
+                                      Flexible(child:Align(alignment: Alignment.center, child: Column(
+                                        children: <Widget>[
+                                          Align(alignment: Alignment.center,child:
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 10.0),
+                                            child: Image.asset(
+                                              'assets/images/badges/finn.png',
+                                              height: 50.0,
+                                              width: 50.0,
+                                            ),
+                                          ),
+                                          ),
+                                          Padding(padding: EdgeInsets.only(top: 5.0), child: Text('Domestic'))
+                                        ],
+                                      ),
+                                      ),
+                                      ),
+                                      Column(
+                                        children: <Widget>[
+                                        Padding(
+                                        padding: EdgeInsets.only(top: 10.0),
                                         child: Image.asset(
-                                          'assets/images/euro.png',
+                                          'assets/images/badges/co2.png',
                                           height: 50.0,
                                           width: 50.0,
                                         ),
                                       ),
-                                        Padding(
-                                        padding: EdgeInsets.only(top: 20.0),
-                                        child: Image.asset(
-                                          'assets/images/co2.png',
-                                          height: 50.0,
-                                          width: 50.0,
-                                        ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 6.6),
+                                        child: Text('Smaller carbon footprint'),
+                                      )
+                                      ],
                                       ),
                                     ],)
                                   ],
+                                ),
+                                 Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: Text('$price €', style: TextStyle(fontSize: 16, color: Colors.grey),),
                                 )
+                                ],
+                                ),
                               
                             ),
                           ),
@@ -157,7 +184,10 @@ Container(
                  FutureBuilder(
                   future: productDataSecond,
                   builder: (context, snapshot) {
-                    if (snapshot.hasData) {
+                    if (snapshot.hasData) {                      
+                      var price = snapshot.data['price'];
+                      var imageId = snapshot.data['imageId'];
+
                       return Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),
                           child: Card(
@@ -165,8 +195,8 @@ Container(
                               child: Container(
                                 padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
                                 width: 300,
-                                height: 300,
-                                child: Column( 
+                                height: 320,
+                                child: Stack(children: <Widget>[ Column( 
                                   children: [
                                     Text(snapshot.data['name'],  
                                       textAlign: TextAlign.center,
@@ -175,16 +205,38 @@ Container(
                                     Padding(
                                       padding: EdgeInsets.only(top: 20.0),
                                       child: Image.asset(
-                                      'assets/images/2.jpg',
+                                      'assets/images/$imageId.jpg',
                                       height: 50.0,
                                       width: 50.0,
                                     ),
                                     ),
                                     chartWidget,
-                                   
+                                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[
+
+                                      Column(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 20.0),
+                                            child: Image.asset(
+                                              'assets/images/badges/euro.png',
+                                              height: 50.0,
+                                              width: 50.0,
+                                            ),
+                                          ),
+                                          Text('Lower price')
+                                        ],
+                                      ),
+                                     
+                                    ],)
                                   ],
+                                ),
+                                 Positioned(
+                                  top: 0,
+                                  right: 0,
+                                  child: Text('$price €', style: TextStyle(fontSize: 16, color: Colors.grey),),
                                 )
-                              
+                                ],
+                                ),
                             ),
                           ),
                           

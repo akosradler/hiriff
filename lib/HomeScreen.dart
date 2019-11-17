@@ -37,26 +37,28 @@ class HomeScreen extends StatelessWidget {
                 ],
               )
           ),
-          bottomNavigationBar:BottomNavigationBar(
-            type: BottomNavigationBarType.shifting ,
-            items: [
-            BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.accessibility_new,color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit,color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')
-            ),
-            BottomNavigationBarItem(
-            icon: Icon(Icons.access_alarm,color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')
-            )
-            ],
+        bottomNavigationBar:BottomNavigationBar(
+        type: BottomNavigationBarType.fixed ,
+        fixedColor: Colors.purple[100],
+        backgroundColor: Colors.purple[100],
+        items: [
+        BottomNavigationBarItem(
+        icon: Icon(Icons.accessibility_new,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.add_a_photo,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.adjust,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        ),
+        BottomNavigationBarItem(
+        icon: Icon(Icons.help,color: Color.fromARGB(255, 0, 0, 0)),
+        title: new Text('')
+        )
+        ],
         )
     );
   }
